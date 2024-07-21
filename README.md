@@ -21,7 +21,12 @@ The body begins with the string "BFNTCBLK" followed by an 8-byte value. The body
 
 When I compared segments of several different characters to each other and found the difference, I found that it was made up of a photo-like structure.
 
-There are 5 unknown areas with a size of 4 bytes; however, when we compared all the abf files, the last 3 areas were all 00 00 00 00.
+There are 5 Unknown blocks, but there have been no cases where these blocks have different values so far.
+
+Text Space blocks seem to mean the distance between letters. After testing, it seems appropriate to put the width value of the letters.
+
+The Left Margin block seems to decide how much more to draw to the right rather than where the original letter should be drawn. This value doesn't seem to have much impact on the text display. More information is needed.
+
 
 # Simple Script
 ![border_font_j24x24](imgs/border_font_j24x24.png)
