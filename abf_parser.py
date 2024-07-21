@@ -36,6 +36,7 @@ u4 = set()
 u5 = set()
 
 dd: dict = dict()
+char_list = []
 
 while pos < len(data):
     unicode_point = data[pos:pos+4]
@@ -45,16 +46,18 @@ while pos < len(data):
         pos += 32
         continue
 
+    char_list.append(character)
+
     column = int.from_bytes(data[pos+4:pos+6], byteorder="big")
     row = int.from_bytes(data[pos+6:pos+8], byteorder="big")
 
     width = int.from_bytes(data[pos + 8:pos + 10], byteorder="big")
     height = int.from_bytes(data[pos + 10:pos + 12], byteorder="big")
 
-    unknown01 = data[pos+12:pos+16].hex(" ")
-    unknown02 = data[pos+16:pos+20].hex(" ")
-    unknown03 = data[pos+20:pos+24].hex(" ")
-    unknown04 = data[pos+24:pos+28].hex(" ")
+    unknown01 = data[pos+12:pos+14].hex(" ")
+    unknown02 = data[pos+14:pos+16].hex(" ")
+    unknown03 = data[pos+16:pos+18].hex(" ")
+    unknown04 = data[pos+18:pos+20].hex(" ")
     unknown05 = data[pos+28:pos+32].hex(" ")
 
     u1.add(unknown01)
@@ -93,6 +96,9 @@ for i, u in enumerate(tmp):
         print(each + "  ...includes...  ", end="")
         print(dd[f"u{i+1}_{each}"])
     print("\n")
+
+sorted(char_list)
+print("".join(char_list))
 
 cv2.imwrite("border_"+IMG_PATH, img)
 cv2.imshow(IMG_PATH, img)
